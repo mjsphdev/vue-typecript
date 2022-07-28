@@ -5,7 +5,6 @@ export const useEmployeeStore = defineStore({
     id: 'employee',
     state: () => ({
         employee: employee_data,
-        initialPage: 1,
         maxPages: [1,2,3,4,5],
         totalPage: 0,
         filterSize: 5,
@@ -23,14 +22,12 @@ export const useEmployeeStore = defineStore({
             state.startPage = Number(state.startPage - 1) + Number(5)
             state.endPage = Number(state.startPage) + Number(5)
            }
-           
            return state.maxPages.slice(state.startPage, state.endPage)
         },
     },
     actions: {
         next(){
             this.filterPage()
-            this.initialPage+=1
             this.currentPage+=1
             let s = (this.currentPage - 1) * this.filterSize
             let e = Number(s) + Number(this.filterSize)
@@ -45,7 +42,6 @@ export const useEmployeeStore = defineStore({
         },
         prev(){
             this.filterPage()
-            this.initialPage-=1
             this.currentPage-=1
 
             let s = (this.currentPage - 1) * this.filterSize
@@ -69,7 +65,6 @@ export const useEmployeeStore = defineStore({
             this.filterPage()
             let start = (page - 1) * this.filterSize
             let end = Number(start) + Number(this.filterSize)
-            this.initialPage = start
 
 
             this.currentPage = page
@@ -77,11 +72,6 @@ export const useEmployeeStore = defineStore({
             this.filterPageDisplay(end, start)
             this.prevValue = start
             this.newValue = end
-        },
-
-        // DECREMENT RANGE OF PAGE
-        decrementPageRange(size: number, startAt: number) {
-            return [...Array(size).keys()].map(i => startAt-i).reverse();
         },
 
         // FILTER PAGE SIZE
