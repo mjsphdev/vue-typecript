@@ -105,7 +105,7 @@ const deleteJoke = (): void => {
 
 <template>
     <div class="container">
-     <div class="card shadow-lg p-5 mt-5 mb-5 bg-white rounded">
+     <div class="card shadow-sm p-5 mt-5 mb-5 bg-white rounded">
         <h1 class="mt-2">Jokes Here!</h1>
 
         <div class="accordion accordion-flush" id="accordionFlushExample">
